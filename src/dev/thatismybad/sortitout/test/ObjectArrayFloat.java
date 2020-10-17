@@ -1,6 +1,8 @@
 package dev.thatismybad.sortitout.test;
 
+
 import dev.thatismybad.sortitout.App;
+import dev.thatismybad.sortitout.enums.ObjectType;
 import dev.thatismybad.sortitout.enums.Sort;
 import dev.thatismybad.sortitout.model.DataLog;
 import dev.thatismybad.sortitout.model.NumericObject;
@@ -13,9 +15,9 @@ import dev.thatismybad.sortitout.utils.sorter.SelectionSorter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrimitiveInteger extends NumericObject {
+public class ObjectArrayFloat extends NumericObject {
 
-    public PrimitiveInteger() {
+    public ObjectArrayFloat() {
         super();
         MeasureUtils.println("Class: " + this.getClass().getSimpleName());
     }
@@ -26,7 +28,7 @@ public class PrimitiveInteger extends NumericObject {
         for (int i = 0; i < App.REPETITIONS; i++) {
             DataLog dataLog = new DataLog()
                     .setId(i + 1)
-                    .setDataType("int")
+                    .setDataType("Float")
                     .setNumberOfValues(App.NUMBERS_TO_GENERATE);
             MeasureUtils.measureIt(sortAllNumbers(sort, generateAllNumbers()), dataLog);
             logs.add(dataLog);
@@ -34,7 +36,7 @@ public class PrimitiveInteger extends NumericObject {
         for (DataLog log : logs) {
             MeasureUtils.println(log);
         }
-        FileUtils.writeToFile("int", sort, logs);
+        FileUtils.writeToFile("FloatArray", sort, logs);
     }
 
     @Override
@@ -43,7 +45,7 @@ public class PrimitiveInteger extends NumericObject {
         for (int i = 0; i < App.REPETITIONS; i++) {
             DataLog dataLog = new DataLog()
                     .setId(i + 1)
-                    .setDataType("int")
+                    .setDataType("Float")
                     .setNumberOfValues(App.NUMBERS_TO_GENERATE);
             MeasureUtils.measureIt(sortAllNumbers(sort, generateAllPositiveNumbers()), dataLog);
             logs.add(dataLog);
@@ -51,7 +53,7 @@ public class PrimitiveInteger extends NumericObject {
         for (DataLog log : logs) {
             MeasureUtils.println(log);
         }
-        FileUtils.writeToFile("int_positive", sort, logs);
+        FileUtils.writeToFile("FloatArray_positive", sort, logs);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class PrimitiveInteger extends NumericObject {
         for (int i = 0; i < App.REPETITIONS; i++) {
             DataLog dataLog = new DataLog()
                     .setId(i + 1)
-                    .setDataType("int")
+                    .setDataType("Float")
                     .setNumberOfValues(App.NUMBERS_TO_GENERATE);
             MeasureUtils.measureIt(sortAllNumbers(sort, generateAllNegativeNumbers()), dataLog);
             logs.add(dataLog);
@@ -68,28 +70,28 @@ public class PrimitiveInteger extends NumericObject {
         for (DataLog log : logs) {
             MeasureUtils.println(log);
         }
-        FileUtils.writeToFile("int_negative", sort, logs);
+        FileUtils.writeToFile("FloatArray_negative", sort, logs);
     }
 
-    public int[] generateAllNumbers() {
-        int[] numbers = NumberUtils.generatePrimitiveIntegers(App.NUMBERS_TO_GENERATE);
-        NumberUtils.printPrimitiveIntArray(numbers);
+    public Float[] generateAllNumbers() {
+        Float[] numbers = NumberUtils.generateObjectFloats(App.NUMBERS_TO_GENERATE);
+        NumberUtils.printObjectArray(numbers);
         return numbers;
     }
 
-    public int[] generateAllPositiveNumbers() {
-        int[] numbers = NumberUtils.makeAllPositive(NumberUtils.generatePrimitiveIntegers(App.NUMBERS_TO_GENERATE));
-        NumberUtils.printPrimitiveIntArray(numbers);
+    public Float[] generateAllPositiveNumbers() {
+        Float[] numbers = (Float[]) NumberUtils.makeAllPositive(ObjectType.FLOAT, NumberUtils.generateObjectFloats(App.NUMBERS_TO_GENERATE));
+        NumberUtils.printObjectArray(numbers);
         return numbers;
     }
 
-    public int[] generateAllNegativeNumbers() {
-        int[] numbers = NumberUtils.makeAllNegative(NumberUtils.generatePrimitiveIntegers(App.NUMBERS_TO_GENERATE));
-        NumberUtils.printPrimitiveIntArray(numbers);
+    public Float[] generateAllNegativeNumbers() {
+        Float[] numbers = (Float[]) NumberUtils.makeAllNegative(ObjectType.FLOAT, NumberUtils.generateObjectFloats(App.NUMBERS_TO_GENERATE));
+        NumberUtils.printObjectArray(numbers);
         return numbers;
     }
 
-    public Runnable sortAllNumbers(Sort type, int[] array) {
+    public Runnable sortAllNumbers(Sort type, Float[] array) {
         return () -> {
             switch (type) {
                 case SELECTION:
@@ -100,7 +102,8 @@ public class PrimitiveInteger extends NumericObject {
                 default:
                     break;
             }
-            NumberUtils.printPrimitiveIntArray(array);
+            NumberUtils.printObjectArray(array);
         };
     }
 }
+

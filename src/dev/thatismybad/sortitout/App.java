@@ -1,83 +1,22 @@
 package dev.thatismybad.sortitout;
 
-import dev.thatismybad.sortitout.test.PrimitiveInteger;
+import dev.thatismybad.sortitout.test.*;
 
 public class App {
 
     public static final boolean CONSOLE_LOGGING = false;
-    public static final int NUMBERS_TO_GENERATE = 10_000;
-    public static final int REPETITIONS = 100;
+    public static final int NUMBERS_TO_GENERATE = 100;
+    public static final int REPETITIONS = 10;
 
     public static void main(String[] args) {
-        PrimitiveInteger pInt = new PrimitiveInteger();
-//        ObjectInteger oInt = new ObjectInteger();
-
-//        app.primitiveIntTest(app);
-
-
-//        // primitive float
-//        System.out.println("\nprimitive float\n");
-//        float[] primitiveFloat = app.generatePrimitiveFloats(NUMBERS_TO_GENERATE);
-//        float[] primitiveFloatPos = app.makeAllPositive(app.generatePrimitiveFloats(NUMBERS_TO_GENERATE));
-//        float[] primitiveFloatNeg = app.makeAllNegative(app.generatePrimitiveFloats(NUMBERS_TO_GENERATE));
-//        app.printPrimitiveFloatArray(primitiveFloat);
-//        app.printPrimitiveFloatArray(primitiveFloatPos);
-//        app.printPrimitiveFloatArray(primitiveFloatNeg);
-//
-//        // primitive double
-//        System.out.println("\nprimitive double\n");
-//        double[] primitiveDouble = app.generatePrimitiveDoubles(NUMBERS_TO_GENERATE);
-//        double[] primitiveDoublePos = app.makeAllPositive(app.generatePrimitiveDoubles(NUMBERS_TO_GENERATE));
-//        double[] primitiveDoubleNeg = app.makeAllNegative(app.generatePrimitiveDoubles(NUMBERS_TO_GENERATE));
-//        app.printPrimitiveDoubleArray(primitiveDouble);
-//        app.printPrimitiveDoubleArray(primitiveDoublePos);
-//        app.printPrimitiveDoubleArray(primitiveDoubleNeg);
-//
-//        // primitive long
-//        System.out.println("\nprimitive long\n");
-//        long[] primitiveLong = app.generatePrimitiveLongs(NUMBERS_TO_GENERATE);
-//        long[] primitiveLongPos = app.makeAllPositive(app.generatePrimitiveLongs(NUMBERS_TO_GENERATE));
-//        long[] primitiveLongNeg = app.makeAllNegative(app.generatePrimitiveLongs(NUMBERS_TO_GENERATE));
-//        app.printPrimitiveLongArray(primitiveLong);
-//        app.printPrimitiveLongArray(primitiveLongPos);
-//        app.printPrimitiveLongArray(primitiveLongNeg);
-//
-//        // Object int - array
-//        System.out.println("\nObject int - array\n");
-//        Integer[] objectInt = app.generateObjectIntegers(NUMBERS_TO_GENERATE);
-//        Integer[] objectIntPos = (Integer[]) app.makeAllPositive(ObjectType.INTEGER, app.generateObjectIntegers(NUMBERS_TO_GENERATE));
-//        Integer[] objectIntNeg = (Integer[]) app.makeAllNegative(ObjectType.INTEGER, app.generateObjectIntegers(NUMBERS_TO_GENERATE));
-//        app.printObjectArray(objectInt);
-//        app.printObjectArray(objectIntPos);
-//        app.printObjectArray(objectIntNeg);
-//
-//        // Object float - array
-//        System.out.println("\nObject float - array\n");
-//        Float[] objectFloat = app.generateObjectFloats(NUMBERS_TO_GENERATE);
-//        Float[] objectFloatPos = (Float[]) app.makeAllPositive(ObjectType.FLOAT, app.generateObjectFloats(NUMBERS_TO_GENERATE));
-//        Float[] objectFloatNeg = (Float[]) app.makeAllNegative(ObjectType.FLOAT, app.generateObjectFloats(NUMBERS_TO_GENERATE));
-//        app.printObjectArray(objectFloat);
-//        app.printObjectArray(objectFloatPos);
-//        app.printObjectArray(objectFloatNeg);
-//
-//        // Object double - array
-//        System.out.println("\nObject double - array\n");
-//        Double[] objectDouble = app.generateObjectDoubles(NUMBERS_TO_GENERATE);
-//        Double[] objectDoublePos = (Double[]) app.makeAllPositive(ObjectType.DOUBLE, app.generateObjectDoubles(NUMBERS_TO_GENERATE));
-//        Double[] objectDoubleNeg = (Double[]) app.makeAllNegative(ObjectType.DOUBLE, app.generateObjectDoubles(NUMBERS_TO_GENERATE));
-//        app.printObjectArray(objectDouble);
-//        app.printObjectArray(objectDoublePos);
-//        app.printObjectArray(objectDoubleNeg);
-//
-//        // Object long - array
-//        System.out.println("\nObject long - array\n");
-//        Long[] objectLong = app.generateObjectLongs(NUMBERS_TO_GENERATE);
-//        Long[] objectLongPos = (Long[]) app.makeAllPositive(ObjectType.LONG, app.generateObjectLongs(NUMBERS_TO_GENERATE));
-//        Long[] objectLongNeg = (Long[]) app.makeAllNegative(ObjectType.LONG, app.generateObjectLongs(NUMBERS_TO_GENERATE));
-//        app.printObjectArray(objectLong);
-//        app.printObjectArray(objectLongPos);
-//        app.printObjectArray(objectLongNeg);
-//
+        new PrimitiveInteger();
+        new PrimitiveFloat();
+        new PrimitiveDouble();
+        new PrimitiveLong();
+        new ObjectArrayInteger();
+        new ObjectArrayFloat();
+        new ObjectArrayDouble();
+        new ObjectArrayLong();
 //        // Object int - list
 //        System.out.println("\nObject int - list\n");
 //        List<Integer> objectListInt = (List<Integer>) app.generateObjectList(ObjectType.INTEGER, NUMBERS_TO_GENERATE);

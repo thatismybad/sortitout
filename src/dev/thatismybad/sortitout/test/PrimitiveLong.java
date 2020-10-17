@@ -13,9 +13,9 @@ import dev.thatismybad.sortitout.utils.sorter.SelectionSorter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrimitiveInteger extends NumericObject {
+public class PrimitiveLong extends NumericObject {
 
-    public PrimitiveInteger() {
+    public PrimitiveLong() {
         super();
         MeasureUtils.println("Class: " + this.getClass().getSimpleName());
     }
@@ -26,7 +26,7 @@ public class PrimitiveInteger extends NumericObject {
         for (int i = 0; i < App.REPETITIONS; i++) {
             DataLog dataLog = new DataLog()
                     .setId(i + 1)
-                    .setDataType("int")
+                    .setDataType("long")
                     .setNumberOfValues(App.NUMBERS_TO_GENERATE);
             MeasureUtils.measureIt(sortAllNumbers(sort, generateAllNumbers()), dataLog);
             logs.add(dataLog);
@@ -34,7 +34,7 @@ public class PrimitiveInteger extends NumericObject {
         for (DataLog log : logs) {
             MeasureUtils.println(log);
         }
-        FileUtils.writeToFile("int", sort, logs);
+        FileUtils.writeToFile("long", sort, logs);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class PrimitiveInteger extends NumericObject {
         for (int i = 0; i < App.REPETITIONS; i++) {
             DataLog dataLog = new DataLog()
                     .setId(i + 1)
-                    .setDataType("int")
+                    .setDataType("long")
                     .setNumberOfValues(App.NUMBERS_TO_GENERATE);
             MeasureUtils.measureIt(sortAllNumbers(sort, generateAllPositiveNumbers()), dataLog);
             logs.add(dataLog);
@@ -51,7 +51,7 @@ public class PrimitiveInteger extends NumericObject {
         for (DataLog log : logs) {
             MeasureUtils.println(log);
         }
-        FileUtils.writeToFile("int_positive", sort, logs);
+        FileUtils.writeToFile("long_positive", sort, logs);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class PrimitiveInteger extends NumericObject {
         for (int i = 0; i < App.REPETITIONS; i++) {
             DataLog dataLog = new DataLog()
                     .setId(i + 1)
-                    .setDataType("int")
+                    .setDataType("long")
                     .setNumberOfValues(App.NUMBERS_TO_GENERATE);
             MeasureUtils.measureIt(sortAllNumbers(sort, generateAllNegativeNumbers()), dataLog);
             logs.add(dataLog);
@@ -68,28 +68,28 @@ public class PrimitiveInteger extends NumericObject {
         for (DataLog log : logs) {
             MeasureUtils.println(log);
         }
-        FileUtils.writeToFile("int_negative", sort, logs);
+        FileUtils.writeToFile("long_negative", sort, logs);
     }
 
-    public int[] generateAllNumbers() {
-        int[] numbers = NumberUtils.generatePrimitiveIntegers(App.NUMBERS_TO_GENERATE);
-        NumberUtils.printPrimitiveIntArray(numbers);
+    public long[] generateAllNumbers() {
+        long[] numbers = NumberUtils.generatePrimitiveLongs(App.NUMBERS_TO_GENERATE);
+        NumberUtils.printPrimitiveLongArray(numbers);
         return numbers;
     }
 
-    public int[] generateAllPositiveNumbers() {
-        int[] numbers = NumberUtils.makeAllPositive(NumberUtils.generatePrimitiveIntegers(App.NUMBERS_TO_GENERATE));
-        NumberUtils.printPrimitiveIntArray(numbers);
+    public long[] generateAllPositiveNumbers() {
+        long[] numbers = NumberUtils.makeAllPositive(NumberUtils.generatePrimitiveLongs(App.NUMBERS_TO_GENERATE));
+        NumberUtils.printPrimitiveLongArray(numbers);
         return numbers;
     }
 
-    public int[] generateAllNegativeNumbers() {
-        int[] numbers = NumberUtils.makeAllNegative(NumberUtils.generatePrimitiveIntegers(App.NUMBERS_TO_GENERATE));
-        NumberUtils.printPrimitiveIntArray(numbers);
+    public long[] generateAllNegativeNumbers() {
+        long[] numbers = NumberUtils.makeAllNegative(NumberUtils.generatePrimitiveLongs(App.NUMBERS_TO_GENERATE));
+        NumberUtils.printPrimitiveLongArray(numbers);
         return numbers;
     }
 
-    public Runnable sortAllNumbers(Sort type, int[] array) {
+    public Runnable sortAllNumbers(Sort type, long[] array) {
         return () -> {
             switch (type) {
                 case SELECTION:
@@ -100,7 +100,7 @@ public class PrimitiveInteger extends NumericObject {
                 default:
                     break;
             }
-            NumberUtils.printPrimitiveIntArray(array);
+            NumberUtils.printPrimitiveLongArray(array);
         };
     }
 }
