@@ -4,59 +4,123 @@ import dev.thatismybad.sortitout.test.*;
 
 public class App {
 
-    public static final boolean CONSOLE_LOGGING = false;
-    public static final int NUMBERS_TO_GENERATE = 100;
-    public static final int REPETITIONS = 10;
+    public static boolean CONSOLE_LOGGING = false;
+    public static boolean OBJECT_TYPES = false;
+    public static boolean PRIMITIVE_TYPES = false;
+    public static int NUMBERS_TO_GENERATE = 100;
+    public static int REPETITIONS = 1;
+    public static int NUMBER_OF_NESTING = 1;
 
+    public static final int NESTING_MIN = 0;
+    public static final int NESTING_MAX = 10;
+
+    private static final Class<?>[] nestedTypeClasses = {
+            IntN1Array.class,
+            IntN2Array.class,
+            IntN3Array.class,
+            IntN4Array.class,
+            IntN5Array.class,
+            IntN6Array.class,
+            IntN7Array.class,
+            IntN8Array.class,
+            IntN9Array.class,
+            IntN10Array.class
+    };
+
+    public static Class<?> getInstanceOfClass(int index) {
+        return nestedTypeClasses[index];
+    }
+
+    /**
+     * Main method of application
+     *
+     * @param args - args[0] - numbers to generate (int)
+     *             - args[1] - repetitions (int)
+     *             - args[2] - logging to console (true/false)
+     *             - args[3] - number of nesting (int) - 0 disables testing
+     *             - args[4] - object types (true/false)
+     *             - args[5] - primitive types (true/false)
+     */
     public static void main(String[] args) {
-        new PrimitiveInteger();
-        new PrimitiveFloat();
-        new PrimitiveDouble();
-        new PrimitiveLong();
+        runConfig(args);
+        try {
+            runNestingTest();
+            if (PRIMITIVE_TYPES) runPrimitivesTest();
+            if (OBJECT_TYPES) runObjectsTest();
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void runConfig(String... args) {
+        try {
+            for (int i = 0; i < args.length; i++) {
+                switch (i) {
+                    case 0:
+                        NUMBERS_TO_GENERATE = Integer.parseInt(args[i]);
+                        break;
+                    case 1:
+                        REPETITIONS = Integer.parseInt(args[i]);
+                        break;
+                    case 2:
+                        CONSOLE_LOGGING = Boolean.parseBoolean(args[i]);
+                        break;
+                    case 3:
+                        NUMBER_OF_NESTING = Math.min(Math.max(Integer.parseInt(args[i]), NESTING_MIN), NESTING_MAX);
+                        break;
+                    case 4:
+                        OBJECT_TYPES = Boolean.parseBoolean(args[i]);
+                        break;
+                    case 5:
+                        PRIMITIVE_TYPES = Boolean.parseBoolean(args[i]);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Something went terribly wrong.");
+            System.out.println(String.format("Error: %s", e.getMessage()));
+        }
+
+        System.out.println(
+                String.format(
+                        "Numbers to generate: %d%n" +
+                                "Number of repetitions: %d%n" +
+                                "Number of nesting: %d%n" +
+                                "Nesting - min: %d | max: %d%n" +
+                                "Console logging?: %s" +
+                                "Testing objects?: %s%n" +
+                                "Testing primitives?: %s%n",
+                        NUMBERS_TO_GENERATE,
+                        REPETITIONS,
+                        NUMBER_OF_NESTING,
+                        NESTING_MIN,
+                        NESTING_MAX,
+                        CONSOLE_LOGGING ? "yes" : "no",
+                        OBJECT_TYPES ? "yes" : "no",
+                        PRIMITIVE_TYPES ? "yes" : "no"
+                )
+        );
+    }
+
+    private static void runNestingTest() throws IllegalAccessException, InstantiationException {
+        for (int i = 0; i < NUMBER_OF_NESTING; i++) {
+            getInstanceOfClass(i).newInstance();
+        }
+    }
+
+    private static void runObjectsTest() {
         new ObjectArrayInteger();
         new ObjectArrayFloat();
         new ObjectArrayDouble();
         new ObjectArrayLong();
-//        // Object int - list
-//        System.out.println("\nObject int - list\n");
-//        List<Integer> objectListInt = (List<Integer>) app.generateObjectList(ObjectType.INTEGER, NUMBERS_TO_GENERATE);
-//        List<Integer> objectListIntPos = (List<Integer>) app.makeAllPositive(ObjectType.INTEGER, app.generateObjectList(ObjectType.INTEGER, NUMBERS_TO_GENERATE));
-//        List<Integer> objectListIntNeg = (List<Integer>) app.makeAllNegative(ObjectType.INTEGER, app.generateObjectList(ObjectType.INTEGER, NUMBERS_TO_GENERATE));
-//        app.printObjectList(objectListInt);
-//        app.printObjectList(objectListIntPos);
-//        app.printObjectList(objectListIntNeg);
-//
-//        // Object float - list
-//        System.out.println("\nObject float - list\n");
-//        List<Float> objectListFloat = (List<Float>) app.generateObjectList(ObjectType.FLOAT, NUMBERS_TO_GENERATE);
-//        List<Float> objectListFloatPos = (List<Float>) app.makeAllPositive(ObjectType.FLOAT, app.generateObjectList(ObjectType.FLOAT, NUMBERS_TO_GENERATE));
-//        List<Float> objectListFloatNeg = (List<Float>) app.makeAllNegative(ObjectType.FLOAT, app.generateObjectList(ObjectType.FLOAT, NUMBERS_TO_GENERATE));
-//        app.printObjectList(objectListFloat);
-//        app.printObjectList(objectListFloatPos);
-//        app.printObjectList(objectListFloatNeg);
-//
-//        // Object double - list
-//        System.out.println("\nObject double - list\n");
-//        List<Double> objectListDouble = (List<Double>) app.generateObjectList(ObjectType.DOUBLE, NUMBERS_TO_GENERATE);
-//        List<Double> objectListDoublePos = (List<Double>) app.makeAllPositive(ObjectType.DOUBLE, app.generateObjectList(ObjectType.DOUBLE, NUMBERS_TO_GENERATE));
-//        List<Double> objectListDoubleNeg = (List<Double>) app.makeAllNegative(ObjectType.DOUBLE, app.generateObjectList(ObjectType.DOUBLE, NUMBERS_TO_GENERATE));
-//        app.printObjectList(objectListDouble);
-//        app.printObjectList(objectListDoublePos);
-//        app.printObjectList(objectListDoubleNeg);
-//
-//        // Object long - list
-//        System.out.println("\nObject long - list\n");
-//        List<Long> objectListLong = (List<Long>) app.generateObjectList(ObjectType.LONG, NUMBERS_TO_GENERATE);
-//        List<Long> objectListLongPos = (List<Long>) app.makeAllPositive(ObjectType.LONG, app.generateObjectList(ObjectType.LONG, NUMBERS_TO_GENERATE));
-//        List<Long> objectListLongNeg = (List<Long>) app.makeAllNegative(ObjectType.LONG, app.generateObjectList(ObjectType.LONG, NUMBERS_TO_GENERATE));
-//        app.printObjectList(objectListLong);
-//        app.printObjectList(objectListLongPos);
-//        app.printObjectList(objectListLongNeg);
     }
 
-//    private Runnable primitiveIntTest(App app) {
-//        return (() -> {
-//
-//        });
-//    }
+    private static void runPrimitivesTest() {
+        new PrimitiveInteger();
+        new PrimitiveFloat();
+        new PrimitiveDouble();
+        new PrimitiveLong();
+    }
 }

@@ -67,12 +67,18 @@ public class NumberUtils {
     }
 
     public static List<?> generateObjectList(ObjectType type, int n) {
-        return switch (type) {
-            case INTEGER -> Arrays.asList(generateObjectIntegers(n));
-            case DOUBLE -> Arrays.asList(generateObjectDoubles(n));
-            case FLOAT -> Arrays.asList(generateObjectFloats(n));
-            case LONG -> Arrays.asList(generateObjectLongs(n));
-        };
+        switch (type) {
+            case INTEGER:
+                return Arrays.asList(generateObjectIntegers(n));
+            case DOUBLE:
+                return Arrays.asList(generateObjectDoubles(n));
+            case FLOAT:
+                return Arrays.asList(generateObjectFloats(n));
+            case LONG:
+                return Arrays.asList(generateObjectLongs(n));
+            default:
+                return null;
+        }
     }
 
     public static void printPrimitiveIntArray(int[] array) {
