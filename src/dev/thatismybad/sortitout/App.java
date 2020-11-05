@@ -1,8 +1,10 @@
 package dev.thatismybad.sortitout;
 
+import dev.thatismybad.sorting.agent.InstrumentationAgent;
 import dev.thatismybad.sortitout.test.*;
 
 public class App {
+
 
     public static boolean CONSOLE_LOGGING = false;
     public static boolean OBJECT_TYPES = false;
@@ -31,6 +33,10 @@ public class App {
         return nestedTypeClasses[index];
     }
 
+    public static void printObjectSize(Object object) {
+        System.out.println("Object type: " + object.getClass() + ", size: " + InstrumentationAgent.getObjectSize(object) + " bytes");
+    }
+
     /**
      * Main method of application
      *
@@ -50,6 +56,9 @@ public class App {
         } catch (IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
+
+        //        IntN1Wrapper n1 = new IntN1Wrapper(Integer.MAX_VALUE);
+        //        printObjectSize(n1);
     }
 
     private static void runConfig(String... args) {

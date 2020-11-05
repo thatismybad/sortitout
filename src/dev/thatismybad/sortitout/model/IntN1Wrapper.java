@@ -17,9 +17,15 @@ public class IntN1Wrapper extends IntNWrapper {
 
     public IntN1Wrapper(Sign sign) {
         switch (sign) {
-            case POSITIVE -> this.value = Math.abs(new Random().nextInt());
-            case NEGATIVE -> this.value = Math.abs(new Random().nextInt()) * -1;
-            default -> this.value = new Random().nextInt();
+            case POSITIVE:
+                this.value = Math.abs(new Random().nextInt());
+                break;
+            case NEGATIVE:
+                this.value = Math.abs(new Random().nextInt()) * -1;
+                break;
+            default:
+                this.value = new Random().nextInt();
+                break;
         }
     }
 

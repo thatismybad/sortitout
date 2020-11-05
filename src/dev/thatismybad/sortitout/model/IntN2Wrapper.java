@@ -5,6 +5,10 @@ import dev.thatismybad.sortitout.enums.Sign;
 public class IntN2Wrapper extends IntNWrapper {
     private final IntN1Wrapper value;
 
+    public IntN2Wrapper(int value) {
+        this.value = new IntN1Wrapper(value);
+    }
+
     public IntN2Wrapper(Sign sign) {
         this.value = new IntN1Wrapper(sign);
     }
